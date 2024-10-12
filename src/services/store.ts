@@ -1,12 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+/* eslint-disable prettier/prettier */
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
 import {
-  TypedUseSelectorHook,
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
+import { userSlice } from '../slices/userSlice';
+import { ingredientsSlice } from '../slices/ingredientsSlice';
+import { constructorSlice } from '../slices/constructorSlice';
+import { orderSubmitSlice } from '../slices/orderSubmitSlice';
+import { feedSlice } from '../slices/feedSlice';
+import { orderSlice } from '../slices/orderSlice';
 
-const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
+const rootReducer = combineSlices(userSlice, constructorSlice, ingredientsSlice, orderSubmitSlice, feedSlice, orderSlice);
 
 const store = configureStore({
   reducer: rootReducer,
@@ -17,7 +23,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export const useDispatch: () => AppDispatch = () => dispatchHook();
-export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
+export const useDispatch = dispatchHook.withTypes<AppDispatch>();
+export const useSelector = selectorHook.withTypes<RootState>();
 
 export default store;
