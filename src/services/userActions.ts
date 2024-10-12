@@ -55,19 +55,12 @@ export const getUserThunk = createAsyncThunk('users/getUser', () =>
 export const checkUserAuth = createAsyncThunk(
   'user/checkUserAuth',
   async (_, { dispatch }) => {
-    try {
-      if (getCookie('accessToken')) {
-        dispatch(setIsLoading(true));
-        const user = await getUserApi();
-        dispatch(setUser(user.user));
-      } else {
-        dispatch(setUser(null));
-      }
-    } catch (ex) {
-      dispatch(setUser(null));
-    } finally {
+    if (getCookie('accessToken')) {
+      getUserApi()
+        .then((user) => dispatch(setUser(user.user)))
+        .finally(() => dispatch(setIsAuthChecked(true)));
+    } else {
       dispatch(setIsAuthChecked(true));
-      dispatch(setIsLoading(false));
     }
   }
 );

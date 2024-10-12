@@ -9,7 +9,7 @@ import { getFeedsApiThunk } from '../../services/feedActions';
 export const Feed: FC = () => {
   /** TODO: взять переменную из стора */
   const dispatch = useDispatch();
-  const orders: TOrder[] | null = useSelector(getFeedOrders);
+  const orders = useSelector(getFeedOrders);
 
   const handleGetFeeds = () => {
     dispatch(getFeedsApiThunk())
