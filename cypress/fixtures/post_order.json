@@ -1,0 +1,16 @@
+{
+	"orders": {
+		"_id": 123456,
+		"status": "ready",
+		"name": "Order1",
+		"createdAt": "2024-11-20",
+		"updatedAt": "2024-11-20",
+		"number": 1,
+		"ingredients": [
+			"643d69a5c3f7b9001cfa093c",
+			"643d69a5c3f7b9001cfa093c"
+		]
+	},
+	"total": 1,
+	"totalToday": 1
+}

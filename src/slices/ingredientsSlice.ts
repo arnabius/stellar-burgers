@@ -2,7 +2,7 @@ import { TIngredient } from '@utils-types';
 import { createSlice } from '@reduxjs/toolkit';
 import { getIngredientsThunk } from '../services/ingredientsActions';
 
-type TIngredients = {
+export type TIngredients = {
   ingredients: TIngredient[] | [];
   buns: TIngredient[] | [];
   mains: TIngredient[] | [];
@@ -19,7 +19,7 @@ const initialState: TIngredients = {
 };
 
 export const ingredientsSlice = createSlice({
-  name: 'ingredient',
+  name: 'ingredientSlice',
   initialState,
   reducers: {},
   selectors: {

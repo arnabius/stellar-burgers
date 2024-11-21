@@ -12,9 +12,9 @@ import { orderSubmitSlice } from '../slices/orderSubmitSlice';
 import { feedSlice } from '../slices/feedSlice';
 import { orderSlice } from '../slices/orderSlice';
 
-const rootReducer = combineSlices(userSlice, constructorSlice, ingredientsSlice, orderSubmitSlice, feedSlice, orderSlice);
+export const rootReducer = combineSlices(userSlice, constructorSlice, ingredientsSlice, orderSubmitSlice, feedSlice, orderSlice);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production'
 });
