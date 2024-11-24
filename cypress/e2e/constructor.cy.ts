@@ -1,11 +1,13 @@
 /// <reference types="cypress" />
 
+const testUrl = 'http://localhost:4000';
+
 describe('добавление ингредиента из списка в конструктор', function () {
   this.beforeEach(function () {
     // Настройка перехвата запросов во всех тестах
     cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
     cy.viewport(1300, 800);
-    cy.visit('http://localhost:4000');
+    cy.visit(testUrl);
   });
 
   it('добавление булок', function () {
@@ -25,7 +27,7 @@ describe('работа модальных окон', function () {
     // Настройка перехвата запросов во всех тестах
     cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
     cy.viewport(1300, 800);
-    cy.visit('http://localhost:4000');
+    cy.visit(testUrl);
   });
 
   it('открытие модального окна ингредиента', function () {
@@ -63,7 +65,7 @@ describe('Тестирование оформления заказа', function 
     );
     cy.setCookie('accessToken', 'accessToken-test');
     cy.viewport(1300, 800);
-    cy.visit('http://localhost:4000');
+    cy.visit(testUrl);
   });
 
   // очищаем после выполнения теста
