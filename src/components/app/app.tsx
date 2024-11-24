@@ -44,7 +44,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className={styles.app}>
+    <div className={styles.app} data-cy='modal-overlay'>
       <AppHeader />
       <>
         {loading ? (
