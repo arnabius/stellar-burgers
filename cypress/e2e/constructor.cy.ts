@@ -46,7 +46,7 @@ describe('работа модальных окон', function () {
 });
 
 // Тестирование оформления заказа
-describe('order modal works correctly', function () {
+describe('Тестирование оформления заказа', function () {
   this.beforeEach(function () {
     cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' }).as(
       'ingredients'
@@ -72,12 +72,12 @@ describe('order modal works correctly', function () {
     cy.clearCookies();
   });
 
-  it('should order burger work', function () {
+  it('Тестирование оформления заказа, закрытия модального окна заказа, очистки конструктора ', function () {
     // собираем бургер
     cy.get('[data-cy=bun-ingredients]').contains('Добавить').click();
     cy.get('[data-cy=main-ingredients]').contains('Добавить').click();
     cy.get('[data-cy=sauces-ingredients]').contains('Добавить').click();
-    cy.get('[data-cy=order-sum]').click();
+    cy.get('[data-cy=order-submit]').click();
 
     // Проверяем, что модальное окно показало номер заказа
     cy.get('[data-cy=order-number]').contains('123456').should('exist');
@@ -86,16 +86,18 @@ describe('order modal works correctly', function () {
     cy.get('#modals button[aria-label="Закрыть"]').click();
     cy.get('[data-cy=order-number]').should('not.exist');
 
-    // Проверяем, что конструктор очистился
-    cy.get('[data-cy=constructor]')
-      .contains('Ингредиент 1')
+    // Проверяем, что конструктор пуст
+    cy.get('[data-cy=constructor-bun1]')
+      //.contains('Краторная булка N-200i')
       .should('not.exist');
-    cy.get('[data-cy=constructor]')
-      .contains('Ингредиент 3')
+    cy.get('[data-cy=constructor-ingredient]')
+      //.contains('Биокотлета из марсианской Магнолии')
       .should('not.exist');
-    cy.get('[data-cy=constructor]')
-      .contains('Ингредиент 4')
+    cy.get('[data-cy=constructor-ingredient]')
+      //.contains('Соус Spicy-X')
+      .should('not.exist');
+    cy.get('[data-cy=constructor-bun2]')
+      //.contains('Краторная булка N-200i')
       .should('not.exist');
   });
 });
-

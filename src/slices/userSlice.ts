@@ -3,7 +3,7 @@ import {TUser} from '@utils-types';
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import { loginUserThunk, logoutUserThunk, updateUserThunk, setUser } from '../services/userActions';
 
-type TUserState = {
+export type TUserState = {
     user: TUser | null;
     isAuthChecked: boolean;
     isLoading: boolean;
@@ -55,7 +55,7 @@ export const userSlice = createSlice({
                 state.isLoading = true;
                 state.isAuthChecked = true;
             })
-            .addCase(logoutUserThunk.fulfilled, (state) => {
+            .addCase(logoutUserThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.user = null;
                 state.isAuthChecked = false;
